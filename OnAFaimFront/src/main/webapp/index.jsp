@@ -9,7 +9,7 @@
 <body>
 
 	<table>
-		<tr><td>Prenom</td></tr>
+		<tr><td>Prenom </td></tr>
 		${ listeMovie[0] }
 	</table>
 
