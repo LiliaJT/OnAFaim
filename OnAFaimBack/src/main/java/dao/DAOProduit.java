@@ -22,7 +22,7 @@ public class DAOProduit implements DAO<Produit, Integer>{
 		while(rs.next()) 
 		{ 
 			
-			p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"));
+			p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));
 					
 		}
 				
@@ -47,7 +47,7 @@ public class DAOProduit implements DAO<Produit, Integer>{
 		
 		while(rs.next()) { 
 			
-			p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"));
+			p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));
 			listeProduit.add(p);
 		}
 		

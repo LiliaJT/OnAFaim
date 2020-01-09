@@ -6,13 +6,41 @@ public class Produit {
 	private String type;
 	private String taille;
 	private double prix;
+	private String libelle;
 	
-	public Produit(int idProduit, String type, String taille, double prix) {
+
+	public Produit(String type, String taille, double prix, String libelle) {
+		this.type = type;
+		this.taille = taille;
+		this.prix = prix;
+		this.libelle = libelle;
+	}
+	
+		
+
+	public Produit(int idProduit, String type, String taille, double prix, String libelle) {
 		this.idProduit = idProduit;
 		this.type = type;
 		this.taille = taille;
 		this.prix = prix;
+		this.libelle = libelle;
 	}
+
+
+
+
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+
 
 	public int getIdProduit() {
 		return idProduit;
@@ -43,10 +71,15 @@ public class Produit {
 		this.prix = prix;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Produit [idProduit=" + idProduit + ", type=" + type + ", taille=" + taille + ", prix=" + prix + "] \n";
+		return "Produit [idProduit=" + idProduit + ", type=" + type + ", taille=" + taille + ", prix=" + prix
+				+ ", libelle=" + libelle + "]";
 	}
+
+	
 	
 	
 	

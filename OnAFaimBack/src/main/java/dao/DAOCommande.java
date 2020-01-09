@@ -47,7 +47,7 @@ public class DAOCommande implements DAO<Commande,Integer>{
 		Produit prod=null;
 		while (rs.next()) {
 			
-			prod=new Produit(rs.getInt("idProd"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"));
+			prod=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));
 			panier=new Panier(commande, prod, rs.getInt("qte"));
 			detail.add(panier);
 		}
