@@ -41,7 +41,6 @@ public class Produit {
 	}
 
 
-
 	public int getIdProduit() {
 		return idProduit;
 	}
