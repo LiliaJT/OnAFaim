@@ -25,7 +25,7 @@ public class DAOProduit implements DAO<Produit, Integer>{
 			p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));
 					
 		}
-				
+		
 		ps.close();
 		conn.close();
 		
