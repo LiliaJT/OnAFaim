@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAOPersonne;
-import dao.FactoryPersonne;
-import model.Personne;
+
 
 
 
