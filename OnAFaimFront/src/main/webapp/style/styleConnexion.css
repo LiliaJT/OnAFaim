@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+#header
+{
+    background-color: #e7c978;
+    min-height:100px; 
+}
+
+#logo
+{
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+#nomSite
+{
+    font-family: cursive;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 7px;
+    color: #3f2417;
+}
+
+
+h1
+{
+	text-align:center; 
+	font-family: cursive;
+    font-size: 35px;
+}
+
+body
+{
+    background-color: #fffef0;
+    margin-right: 20px;
+    
+}
+
+.form-group
+{
+	text-align:center;
+}
+
+.form-control
+{
+	text-align:center; 
+}
+
+
+#btnSubmit
+{
+	position:center; 
+	padding: .375rem .75rem;
+	border-arrouding: 20%; 
+	background: #e7c978;
+	color: #3f2417;
+}
+
+
+#footer
+{
+	background-color: #e7c978; 
+	text-align: center; 
+	bottom: 0; 
+	left: 0; 
+	right: 0; 
+}

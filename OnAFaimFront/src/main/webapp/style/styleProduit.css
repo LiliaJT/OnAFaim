@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+#header
+{
+    background-color: #e7c978;
+    min-height:100px; 
+}
+
+#logo
+{
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+#nomSite
+{
+    font-family: cursive;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 7px;
+    color: #3f2417;
+}
+
+
+
+.crew
+{
+ 	min-width: 200px;
+	min-height: 200px;
+ 	background-color: black;
+ 	margin:auto;
+ 	margin-left: 20px;
+}
+
+#btnAjoutPanier
+{
+	border: solid; 
+}
+
+#footer
+{
+	background-color: #e7c978; 
+	text-align: center; 
+	position: fixed;
+	bottom: 0; 
+	left: 0; 
+	right: 0; 
+}
+
+
+
