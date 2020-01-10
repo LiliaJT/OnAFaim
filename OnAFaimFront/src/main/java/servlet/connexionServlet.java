@@ -18,7 +18,8 @@ import model.Compte;
 public class connexionServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Connexion.jsp").forward(request, response);
+
 	}
 
 	
@@ -30,11 +31,12 @@ public class connexionServlet extends HttpServlet {
 		{
 			if(request.getParameter("action").equals("connect"))
 			{
+				System.out.println("coucou2");
 				c=daoC.checkConnect(request.getParameter("email"), request.getParameter("pass"));
 				if(c==null) 
 				{
 					request.setAttribute("error", "Login/Mot de passe invalides");
-					this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+					this.getServletContext().getRequestDispatcher("/page/Connexion.jsp").forward(request, response);
 				}
 				else if (c.getType().equals("client"))
 				{
@@ -57,7 +59,7 @@ public class connexionServlet extends HttpServlet {
 				//Vérifier les name des input dans la page inscription.html
 				c = new Compte(request.getParameter("nom"), request.getParameter("email"), request.getParameter("mdp"), "Client", "en attente");
 				daoC.insert(c);
-				this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/Connexion.jsp").forward(request, response);
 			}
 		}
 	}

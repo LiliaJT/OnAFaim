@@ -121,14 +121,14 @@
 
 <script>
 
-function connect()
+function btnConnect()
 {
-	location.href="page/connexion.html"
+	location.href="page/Connexion.jsp";
 }
 
-function inscription()
+function btnSignOn()
 {
-	location.href="page/inscription.html"
+	location.href="page/Inscription.jsp";
 }
 
 </script>
