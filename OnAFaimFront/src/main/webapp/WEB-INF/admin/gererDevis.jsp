@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<h1>Bienvenue dans la gestion des clients</h1>
+	<h1>Bienvenue dans la gestion des devis</h1>
 
 
 	

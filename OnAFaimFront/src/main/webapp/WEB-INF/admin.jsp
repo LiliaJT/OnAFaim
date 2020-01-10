@@ -15,10 +15,10 @@
 	<div>
 		<p>Que voulez vous faire ?</p>
 		<ul>
-			<a href="gererClient.jsp"><li>Gérer les clients</li></a>
-			<a><li>Gérer les commandes</li></a>
-			<a><li>Gérer les devis</li></a>
-			<a><li>Gérer les produits</li></a>
+			<a href="admin/gererClient"><li>Gérer les clients</li></a>
+			<a href="admin/gererCommande"><li>Gérer les commandes</li></a>
+			<a href="admin/gererDevis"><li>Gérer les devis</li></a>
+			<a href="admin/gererProduit"><li>Gérer les produits</li></a>
 		
 		</ul>
 	</div>
