@@ -26,14 +26,9 @@ public class Produit {
 		this.libelle = libelle;
 	}
 
-
-
-
-
 	public String getLibelle() {
 		return libelle;
 	}
-
 
 
 	public void setLibelle(String libelle) {

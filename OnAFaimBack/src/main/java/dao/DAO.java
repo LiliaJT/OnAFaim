@@ -5,8 +5,6 @@ import java.util.*;
 
 
 
-
-
 public interface DAO <T,K>{
 
 	public T selectById(K id) throws ClassNotFoundException, SQLException;
