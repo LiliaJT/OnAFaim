@@ -62,8 +62,9 @@ public class DAOCompte implements DAO<Compte, Integer> {
 	}
 
 	
-	public void insert(Compte cm) throws SQLException, ClassNotFoundException {
+	public void insert(Compte cm) {
 		
+		try {
 		Class.forName("com.mysql.jdbc.Driver"); 
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 		
@@ -77,6 +78,8 @@ public class DAOCompte implements DAO<Compte, Integer> {
 		ps.executeUpdate(); 
 		ps.close(); 
 		conn.close();
+		}
+		catch(Exception e ) {e.printStackTrace();}
 	
 	}
 
@@ -116,21 +119,19 @@ public class DAOCompte implements DAO<Compte, Integer> {
 		
 	}
 
-	public Compte checkConnect(String nom,String pass) throws ClassNotFoundException, SQLException 
+	public Compte checkConnect(String email,String pass) 
 	{
 		
-		
-		Class.forName("com.mysql.jdbc.Driver"); 
+		Compte c= null; 
+	try {	Class.forName("com.mysql.jdbc.Driver"); 
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 
-		PreparedStatement ps = conn.prepareStatement("select * from compte where nom=? and mdp=?");
-		ps.setString(1,nom);
+		PreparedStatement ps = conn.prepareStatement("select * from compte where email=? and mdp=? ");
+		ps.setString(1,email);
 		ps.setString(2, pass);
 
 
 		ResultSet rs = ps.executeQuery(); 
-
-		Compte c= null; 
 		
 		while (rs.next())
 		{
@@ -138,7 +139,8 @@ public class DAOCompte implements DAO<Compte, Integer> {
 
 		}
 
-		conn.close(); 
+		conn.close(); }
+		catch(Exception e) {e.printStackTrace();}
 		return c;
 		
 		
