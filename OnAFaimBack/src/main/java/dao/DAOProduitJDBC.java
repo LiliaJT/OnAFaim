@@ -4,104 +4,106 @@ import java.sql.*;
 import java.util.*;
 import model.*;
 
-public class DAOProduitJDBC implements DAO<Produit, Integer>{
+public class DAOProduitJDBC implements DAOProduit{
 
-	public Produit selectById(Integer id) {
-	try {	
-			Class.forName("com.mysql.jdbc.Driver"); 		
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", ""); 	
+	public Produit selectById(Integer id) throws ClassNotFoundException, SQLException {
+		
+		Class.forName("com.mysql.jdbc.Driver"); 		
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", ""); 	
 			
-			PreparedStatement ps=conn.prepareStatement("select * from produit where idProduit=?");
+		PreparedStatement ps=conn.prepareStatement("select * from produit where idProduit=?");
 		
-			ps.setInt(1, id); 
+		ps.setInt(1, id); 
 		
-			ResultSet rs=ps.executeQuery();  
+		ResultSet rs=ps.executeQuery();  
 		
-			Produit p=null;
+		Produit p=null;
 		
-			while(rs.next()) 
-			{ 	
-				p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));		
-			}
+		while(rs.next()) 
+		{ 
+			
+			p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));
+					
+		}
 		
-			ps.close();
-			conn.close();
-			return p; 
-		} catch (Exception e) {return null;}
+		ps.close();
+		conn.close();
+		
+		return p; 
 	}
 
-	public List<Produit> selectAll() {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 	
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", ""); 
+	public List<Produit> selectAll() throws ClassNotFoundException, SQLException {
+		
+		Class.forName("com.mysql.jdbc.Driver"); 	
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", ""); 
 			
-				PreparedStatement ps=conn.prepareStatement("select * from produit");	
 		
-				ResultSet rs=ps.executeQuery(); 
+		PreparedStatement ps=conn.prepareStatement("select * from produit");	
 		
-				Produit p=null;
-				List<Produit> listeProduit= new ArrayList();
+		ResultSet rs=ps.executeQuery(); 
 		
-				while(rs.next()) 
-				{ 
-					p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));
-					listeProduit.add(p);
-				}
+		Produit p=null;
+		List<Produit> listeProduit= new ArrayList();
 		
-				ps.close();
-				conn.close();
+		while(rs.next()) { 
+			
+			p=new Produit(rs.getInt("idProduit"), rs.getString("type"), rs.getString("taille"), rs.getDouble("prix"), rs.getString("libelle"));
+			listeProduit.add(p);
+		}
 		
-				return listeProduit;
-		} catch (Exception e) {return null;}
+		
+		ps.close();
+		conn.close();
+		
+		return listeProduit;
 	}
 
-	public void insert(Produit p) {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 	
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
+	public void insert(Produit p) throws ClassNotFoundException, SQLException {
+//		DAOCompte daoC=new DAOCompte();
+		
+		Class.forName("com.mysql.jdbc.Driver"); 	
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
 		
 		
-				PreparedStatement ps=conn.prepareStatement("insert into produit (type, taille, prix, libelle) values (?,?,?,?)");
+		PreparedStatement ps=conn.prepareStatement("insert into produit (idProduit, type, taille, prix) values (?,?,?,?)");
 		
-				ps.setString(1, p.getType());
-				ps.setString(2, p.getTaille()); 
-				ps.setDouble(3, p.getPrix()); 
-				ps.setString(4, p.getLibelle());
+		ps.setInt(1, p.getIdProduit()); 
+		ps.setString(2, p.getType());
+		ps.setString(3, p.getTaille()); 
+		ps.setDouble(4, p.getPrix()); 
 	
-				ps.executeUpdate();
-				ps.close();
-				conn.close(); 
-		} catch (Exception e) {}
+		
+		ps.executeUpdate();
+		ps.close();
+		conn.close(); 
 	}
 
-	public void update(Produit p) {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 	
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
+	public void update(Produit p) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver"); 	
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
 		
-				PreparedStatement ps=conn.prepareStatement("update produit set type=?, taille=?, prix=? where idProduit=?");  
+		
+		PreparedStatement ps=conn.prepareStatement("update produit set type=?, taille=?, prix=? where idProduit=?");  
 		 
-				ps.setString(1, p.getType());
-				ps.setString(2, p.getTaille()); 
-				ps.setDouble(3, p.getPrix()); 
-				ps.setInt(4, p.getIdProduit()); 
+		ps.setString(1, p.getType());
+		ps.setString(2, p.getTaille()); 
+		ps.setDouble(3, p.getPrix()); 
+		ps.setInt(4, p.getIdProduit()); 
 
-				ps.executeUpdate();
-				conn.close();
-		}catch(Exception e) {}
+		ps.executeUpdate();
+		conn.close();
 		
 	}
 
-	public void delete(Integer id) {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 	
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
+	public void delete(Integer id) throws ClassNotFoundException, SQLException {
 		
-				PreparedStatement ps=conn.prepareStatement("delete from produit where idProduit=?");
-				ps.setInt(1, id); 
-				ps.executeUpdate(); 
-				conn.close();
-		} catch (Exception e) {}
+		Class.forName("com.mysql.jdbc.Driver"); 	
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
+		
+			PreparedStatement ps=conn.prepareStatement("delete from produit where idProduit=?");
+			ps.setInt(1, id); 
+			ps.executeUpdate(); 
+			conn.close();
 		
 	}
 		

@@ -10,131 +10,138 @@ import java.util.List;
 
 import model.Compte;
 
-public class DAOCompteJDBC implements DAO<Compte, Integer> {
+public class DAOCompteJDBC implements DAOCompte {
 
 	
-	public Compte selectById(Integer idCompte) {
-	try {
-			Class.forName("com.mysql.jdbc.Driver"); 
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
+	public Compte selectById(Integer idCompte) throws SQLException, ClassNotFoundException 
+	{
+		Class.forName("com.mysql.jdbc.Driver"); 
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 
-			PreparedStatement ps = conn.prepareStatement("select * from compte where idCompte=?");
+		PreparedStatement ps = conn.prepareStatement("select * from compte where idCompte=?");
 
-			ps.setInt(1, idCompte);
+		ps.setInt(1, idCompte);
 
-			ResultSet rs = ps.executeQuery(); 
 
-			Compte cm = null; 
-			while (rs.next())
+		ResultSet rs = ps.executeQuery(); 
+
+		Compte cm = null; 
+		while (rs.next())
+		{
+			cm = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), rs.getString("email"), rs.getString("type"), rs.getString("compteEtat")); 
+
+		}
+
+		conn.close(); 
+		return cm;
+
+	}
+
+	
+	public List<Compte> selectAll() throws SQLException, ClassNotFoundException {
+		
+		Class.forName("com.mysql.jdbc.Driver"); 
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
+		
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM compte"); 
+		
+		ResultSet rs = ps.executeQuery();
+		
+		Compte cm=null; 
+		List<Compte> list= new ArrayList(); 
+		while (rs.next())
 			{
-			cm = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), rs.getString("email"), 			rs.getString("type"), rs.getString("compteEtat")); 
+				cm = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), rs.getString("email"), rs.getString("type"), rs.getString("compteEtat")); 
+				list.add(cm); 
 			}
+		ps.close();
+		conn.close();
+		
+		return list;
 
-			conn.close(); 
-			return cm;
-	}catch (Exception e) {return null;}
-}
-
-	
-	public List<Compte> selectAll()  {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
-		
-				PreparedStatement ps = conn.prepareStatement("SELECT * FROM compte"); 
-		
-				ResultSet rs = ps.executeQuery();
-		
-				Compte cm=null; 
-				List<Compte> list= new ArrayList(); 
-				while (rs.next())
-				{
-					cm = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), 					rs.getString("email"), rs.getString("type"), rs.getString("compteEtat")); 
-					list.add(cm); 
-				}
-				ps.close();
-				conn.close();
-		
-				return list;
-		}catch (Exception e) {return null;}
 	}
 
 	
-	public void insert(Compte cm) {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
+	public void insert(Compte cm) throws SQLException, ClassNotFoundException {
 		
-				PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (nom, mdp, email) VALUES (?,?,?)"); 
+		Class.forName("com.mysql.jdbc.Driver"); 
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 		
-				ps.setString(1, cm.getNom());
-				ps.setString(2, cm.getMdp());
-				ps.setString(3, cm.getEmail());
 		
-				ps.executeUpdate(); 
-				ps.close(); 
-				conn.close();
-		}catch (Exception e) {}
+		PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (nom, mdp, email) VALUES (?,?,?)"); 
+		
+		ps.setString(1, cm.getNom());
+		ps.setString(2, cm.getMdp());
+		ps.setString(3, cm.getEmail());
+		
+		ps.executeUpdate(); 
+		ps.close(); 
+		conn.close();
+	
 	}
 
-	public void update(Compte cm) {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
+	public void update(Compte cm) throws SQLException, ClassNotFoundException {
+		
+		Class.forName("com.mysql.jdbc.Driver"); 
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 			
-				PreparedStatement ps = conn.prepareStatement("Update compte set nom=?, mdp=?, email=?, type=?, 				compteEtat=? where idCompte=?"); 
+		PreparedStatement ps = conn.prepareStatement("Update compte set nom=?, mdp=?, email=?, type=?, compteEtat=? where idCompte=?"); 
 		
-				ps.setString(1, cm.getNom());
-				ps.setString(2, cm.getMdp());
-				ps.setString(3, cm.getEmail());
-				ps.setString(4, cm.getType());
-				ps.setString(5, cm.getCompteEtat());
-				ps.setInt(6, cm.getIdCompte());
+		ps.setString(1, cm.getNom());
+		ps.setString(2, cm.getMdp());
+		ps.setString(3, cm.getEmail());
+		ps.setString(4, cm.getType());
+		ps.setString(5, cm.getCompteEtat());
+		ps.setInt(6, cm.getIdCompte());
 		
 		
-				ps.executeUpdate(); 
-				ps.close(); 
-				conn.close();
-		}catch (Exception e) {}
+		ps.executeUpdate(); 
+		ps.close(); 
+		conn.close();
+		
 	}
 
 	public void delete(Integer id) throws SQLException, ClassNotFoundException {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 		
-				PreparedStatement ps = conn.prepareStatement("DELETE from compte where idCompte=?"); 
+		Class.forName("com.mysql.jdbc.Driver"); 
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
+		
+		PreparedStatement ps = conn.prepareStatement("DELETE from compte where idCompte=?"); 
 	
-				ps.setInt(1,id);
-				ps.executeUpdate(); 
-				ps.close(); 
+		ps.setInt(1,id);
+		ps.executeUpdate(); 
+		ps.close(); 
 		
-				conn.close();
-		}catch (Exception e) {}
+		conn.close();
 		
 	}
 
-	public Compte checkConnect(String nom,String pass)  {
-		try {
-				Class.forName("com.mysql.jdbc.Driver"); 
-				Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
-
-				PreparedStatement ps = conn.prepareStatement("select * from compte where nom=? and mdp=?");
-				ps.setString(1,nom);
-				ps.setString(2, pass);
-
-				ResultSet rs = ps.executeQuery(); 
-
-				Compte cm= null; 
+	public Compte checkConnect(String email,String pass) throws ClassNotFoundException, SQLException 
+	{
 		
-				while (rs.next())
-				{
-					cm = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), 					rs.getString("email"), rs.getString("type"), rs.getString("compteEtat")); 
-				}
+		
+		Class.forName("com.mysql.jdbc.Driver"); 
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 
-				conn.close(); 
-				return cm;
-		}catch (Exception e) {return null;}
+		PreparedStatement ps = conn.prepareStatement("select * from compte where email=? and mdp=?");
+		ps.setString(1,email);
+		ps.setString(2, pass);
+
+
+		ResultSet rs = ps.executeQuery(); 
+
+		Compte c= null; 
+		
+		while (rs.next())
+		{
+			c = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), rs.getString("email"), rs.getString("type"), rs.getString("compteEtat")); 
+
+		}
+
+		conn.close(); 
+		return c;
+		
+		
 	} 
 	
 }

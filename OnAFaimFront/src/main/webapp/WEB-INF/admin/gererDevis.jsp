@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
-	<table>
-		<tr><td>Prenom </td></tr>
-		${ listeMovie[0] }
-	</table>
+	<h1>Bienvenue dans la gestion des devis</h1>
 
 
+	
+	
 
 
 
