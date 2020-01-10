@@ -127,6 +127,35 @@ public class DAOPanierJDBC implements DAOPanier {
 	
 		
 	}
+
+
+	public List<Panier> selectAllForClient(Integer idClient) throws ClassNotFoundException, SQLException {
+		DAOCommandeJDBC daoC=new DAOCommandeJDBC();
+		DAOProduitJDBC daoP=new DAOProduitJDBC();
+		
+		Class.forName("com.mysql.jdbc.Driver"); 	
+		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", ""); 
+				
+		PreparedStatement ps=conn.prepareStatement("select * from panier, commander where idCom=idCommande and idCompte=?");	
+		ps.setInt(1, idClient);
+		
+		ResultSet rs=ps.executeQuery(); 
+		
+		Panier p=null;
+		List<Panier> listePanier= new ArrayList();
+		
+		while(rs.next()) { 
+			
+			p=new Panier(daoC.selectById(rs.getInt("idCom")), daoP.selectById(rs.getInt("idProd")), rs.getInt("qte"));
+			listePanier.add(p);
+		}
+		
+		
+		ps.close();
+		conn.close();
+		
+		return listePanier;
+	}
 		
 
 }

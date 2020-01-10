@@ -32,7 +32,7 @@
 				<td>${compte.email}</td>
 				<td>${compte.compteEtat}</td>
 				<td><a href="gererClient?validation=valided&id=${compte.idCompte}" id="lienValided">Check</a></td>
-				<td><a href="gererClient?validation=notvalided&id=${compte.idCompte}" id="lienNotValided">Croix</a></td>
+				<td><a href="gererClient?validation=notvalided&id=${compte.idCompte}" id="lienNotValided">Supprimer</a></td>
 			</tr>
 		
 		

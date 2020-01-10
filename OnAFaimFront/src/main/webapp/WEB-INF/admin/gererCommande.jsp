@@ -11,8 +11,7 @@
 <body>
 
 	<h1>Bienvenue dans la gestion des commandes</h1>
-
-
+	
 	
 	
 

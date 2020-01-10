@@ -20,7 +20,7 @@ import model.*;
 public class gererClientServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		DAOCompteJDBC daoC = FactoryCompte.getDAOCompte();
+		DAOCompte daoC = FactoryCompte.getDAOCompte();
 		String 	valid = request.getParameter("validation");
 		if(valid==null) {  //Cas ou on n'a pas cliqué sur un bouton
 			try {
