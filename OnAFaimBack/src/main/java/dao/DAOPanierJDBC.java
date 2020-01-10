@@ -71,10 +71,12 @@ public class DAOPanierJDBC implements DAOPanier {
 	}
 
 	
-	public void insert(Panier p) throws ClassNotFoundException, SQLException {
+	public void insert(Panier p) {
 		//DAOCommande daoC=new DAOCommande(); Pas besoin ? 
 		//DAOpanier daoP=new DAOpanier();
 		
+		try
+		{
 		Class.forName("com.mysql.jdbc.Driver"); 	
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
 		
@@ -89,6 +91,8 @@ public class DAOPanierJDBC implements DAOPanier {
 		ps.executeUpdate();
 		ps.close();
 		conn.close();
+		}
+		catch (Exception e) {e.printStackTrace();}
 		
 	}
 

@@ -3,10 +3,10 @@ package dao;
 public class FactoryProduit {
 
 	
-	static DAOProduitJDBC dao=new DAOProduitJDBC();
+	static DAOProduit dao=new DAOProduitJDBC();
 	
 
-	public static DAOProduitJDBC getDAOProduit() 
+	public static DAOProduit getDAOProduit() 
 	{
 		return dao;
 	}

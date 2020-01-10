@@ -3,10 +3,10 @@ package dao;
 public class FactoryCompte {
 
 	
-	static DAOCompteJDBC dao=new DAOCompteJDBC();
+	static DAOCompte dao=new DAOCompteJDBC();
 	
 
-	public static DAOCompteJDBC getDAOCompte() 
+	public static DAOCompte getDAOCompte() 
 	{
 		return dao;
 	}

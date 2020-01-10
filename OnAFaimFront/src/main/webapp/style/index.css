@@ -1,0 +1,88 @@
+body
+{
+	background-color: #fffef0;
+	margin-right: 20px;
+}
+
+#logo
+{
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+#header
+{
+	background-color: #e7c978;
+	min-height:100px; 
+}
+	
+#nomSite
+{
+	font-family: cursive;
+	font-size: 70px;
+	text-align: center;
+	margin-top: 7px;
+	color: #3f2417;
+}
+
+#btnConnect
+{
+	height: 50px;
+	margin-top: 25px;
+	margin-right: 10px;
+}
+
+#btnSignOn
+{
+	height: 50px;
+	margin-top: 25px;
+}
+
+
+
+#content
+{
+	margin-top: 40px;
+	margin-bottom: 40px;
+	min-height:500px; 
+}
+
+#menu
+{
+	background-color: #e7c978;
+	padding-top: 100px; 
+}
+
+a
+{
+	font-size : 30px;
+	color: #3f2417;
+	margin-left: 30px;
+}
+
+#imgIndex
+{
+	margin-left: 200px;
+	margin-top: 25px;
+}
+
+#monPanier
+{
+	font-size: 30px;
+	text-align: center;
+	margin-top: 5px;
+	color: #3f2417;
+}
+
+#footer
+{
+	background-color: #e7c978;
+	min-height:15px; 
+	color: #3f2417;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	left:0;
+	right:0;
+}

@@ -3,10 +3,10 @@ package dao;
 public class FactoryDevis {
 
 	
-	static DAODevisJDBC dao=new DAODevisJDBC();
+	static DAODevis dao=new DAODevisJDBC();
 	
 
-	public static DAODevisJDBC getDAODevis() 
+	public static DAODevis getDAODevis() 
 	{
 		return dao;
 	}

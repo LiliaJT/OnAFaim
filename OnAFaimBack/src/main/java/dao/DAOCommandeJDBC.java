@@ -85,8 +85,10 @@ public class DAOCommandeJDBC implements DAOCommande {
 	
 
 
-	public void insert(Commande c) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+	public void insert(Commande c) {
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", "");
 		
 		PreparedStatement ps = conn.prepareStatement("insert into commander (cEval,cEtat,prixTot,idCompte) values(?,?,?,?)");
@@ -98,6 +100,8 @@ public class DAOCommandeJDBC implements DAOCommande {
 		ps.executeUpdate();
 
 		conn.close();
+		}
+		catch (Exception e) {e.printStackTrace();}
 	}
 
 

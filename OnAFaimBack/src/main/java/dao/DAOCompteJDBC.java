@@ -62,8 +62,10 @@ public class DAOCompteJDBC implements DAOCompte {
 	}
 
 	
-	public void insert(Compte cm) throws SQLException, ClassNotFoundException {
+	public void insert(Compte cm) {
 		
+		try
+		{
 		Class.forName("com.mysql.jdbc.Driver"); 
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 		
@@ -77,6 +79,8 @@ public class DAOCompteJDBC implements DAOCompte {
 		ps.executeUpdate(); 
 		ps.close(); 
 		conn.close();
+		}
+		catch (Exception e) {e.printStackTrace();}
 	
 	}
 
@@ -116,31 +120,37 @@ public class DAOCompteJDBC implements DAOCompte {
 		
 	}
 
-	public Compte checkConnect(String email,String pass) throws ClassNotFoundException, SQLException 
+	public Compte checkConnect(String email,String pass) 
 	{
-		
-		
-		Class.forName("com.mysql.jdbc.Driver"); 
-		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
-
-		PreparedStatement ps = conn.prepareStatement("select * from compte where email=? and mdp=?");
-		ps.setString(1,email);
-		ps.setString(2, pass);
-
-
-		ResultSet rs = ps.executeQuery(); 
-
 		Compte c= null; 
 		
-		while (rs.next())
+		try
 		{
-			c = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), rs.getString("email"), rs.getString("type"), rs.getString("compteEtat")); 
+			Class.forName("com.mysql.jdbc.Driver"); 
+			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam","root", ""); 
 
+			PreparedStatement ps = conn.prepareStatement("select * from compte where email=? and mdp=?");
+			ps.setString(1,email);
+			ps.setString(2, pass);
+
+
+			ResultSet rs = ps.executeQuery(); 
+
+			
+			
+			while (rs.next())
+			{
+				c = new Compte (rs.getInt("idCompte"), rs.getString("nom"), rs.getString("mdp"), rs.getString("email"), rs.getString("type"), rs.getString("compteEtat")); 
+
+			}
+
+			conn.close(); 
+			
 		}
-
-		conn.close(); 
-		return c;
+		catch (Exception e) {e.printStackTrace();}
 		
+	
+		return c;
 		
 	} 
 	

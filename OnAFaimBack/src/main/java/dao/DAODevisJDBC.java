@@ -63,8 +63,9 @@ public class DAODevisJDBC implements DAODevis{
 	}
 
 	
-	public void insert(Devis d) throws ClassNotFoundException, SQLException {
+	public void insert(Devis d) {
 		
+		try {
 		DAOCompteJDBC daoC=new DAOCompteJDBC();
 		
 		Class.forName("com.mysql.jdbc.Driver"); 	
@@ -84,7 +85,8 @@ public class DAODevisJDBC implements DAODevis{
 		ps.executeUpdate();
 		ps.close();
 		conn.close();
-		
+		}
+		catch (Exception e) {e.printStackTrace();}
 	}
 
 	

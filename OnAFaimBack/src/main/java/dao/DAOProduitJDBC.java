@@ -58,9 +58,11 @@ public class DAOProduitJDBC implements DAOProduit{
 		return listeProduit;
 	}
 
-	public void insert(Produit p) throws ClassNotFoundException, SQLException {
+	public void insert(Produit p) {
 //		DAOCompte daoC=new DAOCompte();
 		
+		try
+		{
 		Class.forName("com.mysql.jdbc.Driver"); 	
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/miam", "root", "");
 		
@@ -76,6 +78,8 @@ public class DAOProduitJDBC implements DAOProduit{
 		ps.executeUpdate();
 		ps.close();
 		conn.close(); 
+		}
+		catch (Exception e) {e.printStackTrace();}
 	}
 
 	public void update(Produit p) throws ClassNotFoundException, SQLException {

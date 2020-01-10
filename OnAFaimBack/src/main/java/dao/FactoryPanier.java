@@ -3,10 +3,10 @@ package dao;
 public class FactoryPanier {
 
 	
-	static DAOPanierJDBC dao=new DAOPanierJDBC();
+	static DAOPanier dao=new DAOPanierJDBC();
 	
 
-	public static DAOPanierJDBC getDAOPanier() 
+	public static DAOPanier getDAOPanier() 
 	{
 		return dao;
 	}
