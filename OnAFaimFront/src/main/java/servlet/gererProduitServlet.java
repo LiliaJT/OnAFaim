@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DAOCompteJDBC;
+import dao.DAOProduit;
 import dao.FactoryCompte;
+import dao.FactoryProduit;
 import model.Compte;
+import model.Produit;
 
 
 
@@ -21,19 +24,17 @@ import model.Compte;
 public class gererProduitServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		this.getServletContext().getRequestDispatcher("/WEB-INF/admin/gererProduit.jsp").forward(request, response);
-		
-		
-		/*DAOProduitJDBC daoC = FactoryCompte.getDAOCompte();
-		String 	valid = request.getParameter("validation");
-		if(valid==null) {  //Cas ou on n'a pas cliqué sur un bouton
+
+		DAOProduit daoP = FactoryProduit.getDAOProduit();
+		//String valid = request.getParameter("validation");
+		if(true) {  //Cas ou on n'a pas cliqué sur un bouton
 			try {
-				List<Compte> list = daoC.selectAll();
+				List<Produit> list = daoP.selectAll();
 				request.setAttribute("listC", list);
-				this.getServletContext().getRequestDispatcher("/WEB-INF/admin/gererClient.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/admin/gererProduit.jsp").forward(request, response);
 			} catch(Exception e) {e.printStackTrace();}
 		}
-		else {
+		/*else {
 			String id=request.getParameter("id");
 			if(valid.contentEquals("valided")) { // On a cliqué sur le bouton check
 				try {

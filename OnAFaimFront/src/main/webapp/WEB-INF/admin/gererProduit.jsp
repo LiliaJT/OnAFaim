@@ -17,29 +17,36 @@
 	
 	<table border>
 		<tr>
-			<td>Type</td>
+			<td>Libellé</td>
 			<td>Prix</td>
 			<td>Taille</td>
-			<td>Modifier</td>
+			<td>Type</td>
+			<td></td>
 		</tr>
 		
-		<c:forEach items="${listP}" var="produit">
+		<c:forEach items="${listC}" var="produit">
 			<tr>
-				<td>${produit.type}</td>
+				<td>${produit.libelle}</td>
 				<td>${produit.prix}</td>
 				<td>${produit.taille}</td>
-				<td><a href="">Modifier</a></td>
-	
+				<td>${produit.type}</td>
+				<td><button onClick="modifierProduit()">Modifier</button></td>
+				<td id="lienEnvoyer" style="display:none"><a href="">Envoyer</a></td>
 			</tr>
 		
 		
 		</c:forEach>
 	</table>
 	
-	
-
-
-
 
 </body>
 </html>
+
+
+<script>
+	
+	function modifierProduit() {
+		lienEnvoyer.style.display="inline";
+	}
+
+</script>
